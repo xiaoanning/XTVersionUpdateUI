@@ -7,6 +7,11 @@
 //
 
 #import "ViewController.h"
+#if 0
+#import "HZBVersionUpdateView.h"
+#else
+#import "HZBVersionUpdateUI.h"
+#endif
 
 @interface ViewController ()
 
@@ -14,16 +19,36 @@
 
 @implementation ViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+
+    
+    [self update2];
+//    [self update1];
 }
 
+#if 0
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+-(void)update1
+{
+    [HZBVersionUpdateView showUpdate:KKUpdateStatusNeedUpdate callback:^(KKCallbackTypeEnum type) {
+        
+        NSLog(@"%@",@(type));
+        
+    }];
 }
 
+#else
+-(void)update2
+{
+    [HZBVersionUpdateUI showUpdate:KKUpdateStatusNeedUpdate callback:^(KKCallbackTypeEnum type) {
+        
+        NSLog(@"==== %@",@(type));
+
+    }];
+}
+
+#endif
 
 @end
